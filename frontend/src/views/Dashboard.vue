@@ -26,7 +26,7 @@
             </div>
 
             <div class="flex flex-col md:flex-row gap-6">
-                <form @submit.prevent="addTask" class="bg-white rounded shadow p-4 mb-6 md:mb-0 md:w-1/4">
+                <form v-if="auth.user?.is_admin" @submit.prevent="addTask" class="bg-white rounded shadow p-4 mb-6 md:mb-0 md:w-1/4">
                     <h2 class="text-xl font-semibold mb-4">Nova Tarefa</h2>
                     <input v-model="newTask.title" type="text" placeholder="Título" required
                         class="w-full mb-3 p-2 border rounded" />
