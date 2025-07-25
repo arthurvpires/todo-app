@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Task;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 
 class TaskRepository
@@ -21,6 +22,14 @@ class TaskRepository
         return Task::where('status', Task::STATUS_COMPLETED)
             ->where('updated_at', '<=', now()->subYear())
             ->get();
+    }
+
+    public function taskAlreadyExists (int $userId, string $title, string $description): bool
+    {
+        return Task::where('user_id', $userId)
+            ->where('title', $title)
+            ->where('description', $description)
+            ->exists();
     }
 
     public function delete(Task $task): bool

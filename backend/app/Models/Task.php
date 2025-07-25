@@ -10,7 +10,6 @@ class Task extends Model
     use HasFactory;
 
     protected $table = 'tasks';
-
     public $timestamps = true;
 
     protected $fillable = [
@@ -26,9 +25,7 @@ class Task extends Model
     ];
 
     const STATUS_PENDING = 'pending';
-
     const STATUS_IN_PROGRESS = 'in_progress';
-
     const STATUS_COMPLETED = 'completed';
 
     public function user()

@@ -44,9 +44,6 @@ class TaskSeeder extends Seeder
             'status' => Task::STATUS_COMPLETED,
         ]);
 
-        Task::factory()->count(20)->create([
-            'user_id' => $userId,
-        ]);
 
         foreach ($tasks as $data) {
             Task::create($data);

@@ -17,6 +17,15 @@ class StoreRequest extends FormRequest
         ];
     }
 
+    public function messages()
+    {
+        return [
+            'title.required' => 'O título da tarefa é obrigatório.',
+            'status.required' => 'O status da tarefa é obrigatório.',
+            'due_date.after_or_equal' => 'A data de vencimento deve ser hoje ou uma data futura.',
+        ];
+    }
+
     public function userId(): int
     {
         return $this->validated('user_id');
