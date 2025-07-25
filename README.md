@@ -23,15 +23,15 @@ Sistema web completo para gerenciamento de tarefas, com autenticação, permiss�
 
 - Cadastro de usuários com autenticação protegida por Sanctum
 - Cadastro de tarefas informando título, descrição, status e data de vencimento
-- Listagem paginada de tarefas
 - Permissões: apenas administradores podem criar tarefas
 - Envio de e-mails assíncronos usando filas
-- Testes automatizados
+- Testes unitários
 - Busca de tarefas por palavra chave
 - Exportar tarefas (CSV)
 - Tela para administradores (listar, criar e apagar usuários)
 - Validações com FormRequests
 - Command Laravel que manipula dados (apaga tarefas completadas a mais de um ano)
+- TaskObserver que observa se já existe uma tarefa criada com mesmo nome e descrição.
 
 ## Pré-requisitos
 
@@ -80,7 +80,17 @@ docker exec -it todo-app-backend php artisan migrate --seed
    ```
    docker exec -it todo-app php artisan queue:work
    ````
+## Comandos Laravel
 
+  - O comando abaixo remove tarefas com status 'completed' que foram concluídas há um ano ou mais:
+   ```
+   docker exec -it todo-app php artisan delete-old-completed-tasks
+   ````
+  - Este comando envia e-mails para usuários que possuem tarefas com vencimento agendado para amanhã (necessário configurar o envio de emails no tópico anterior):
+   ```
+   docker exec -it todo-app php artisan email:send-to-task-due-tomorrow
+   ````
+ 
 ## Configuração do Hosts:
 
   ### Windows
