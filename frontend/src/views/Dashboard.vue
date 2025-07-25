@@ -120,8 +120,20 @@
                                     </button>
                                 </div>
                                 <p v-if="task.description" class="text-gray-600 mb-2">{{ task.description }}</p>
-                                <small v-if="task.due_date" class="text-green-700">Venceu: {{
-                                    formatDate(task.due_date) }}</small>
+                                <small v-if="task.due_date" class="text-green-700">Venceu: {{ formatDate(task.due_date)
+                                    }}</small>
+                                <div class="mt-2 flex gap-2">
+                                    <button @click.stop="updateStatus(task, 'pending')"
+                                        class="text-blue-500 hover:text-blue-700 font-semibold"
+                                        title="Voltar para Pendentes">
+                                        ←
+                                    </button>
+                                    <button @click.stop="updateStatus(task, 'in_progress')"
+                                        class="text-yellow-500 hover:text-green-700 font-semibold"
+                                        title="Voltar para Em progresso">
+                                        ⟳
+                                    </button>
+                                </div>
                             </li>
                         </ul>
                     </div>
